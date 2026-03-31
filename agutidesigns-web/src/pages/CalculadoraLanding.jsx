@@ -178,6 +178,37 @@ export default function CalculadoraLanding() {
     setIsLoading(true);
   };
 
+  const sendLeadToN8N = async (quoteData) => {
+    const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+    if (!webhookUrl) return;
+    const WEB_TYPE_LABELS = { landing: 'Landing Page', corporativa: 'Web Corporativa', ecommerce: 'Tienda Online', portfolio: 'Portfolio' };
+    const TIMELINE_LABELS = { urgente: 'Urgente (+25%)', normal: 'Normal (3-4 sem)', flexible: 'Flexible (-5%)', 'sin-prisa': 'Sin prisa (-10%)' };
+    try {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          webType: WEB_TYPE_LABELS[formData.webType] || formData.webType,
+          webTypeId: formData.webType,
+          pages: formData.pages,
+          designStyle: formData.designStyle,
+          functionalities: formData.functionalities,
+          seoExtras: formData.seoExtras,
+          timeline: TIMELINE_LABELS[formData.timeline] || formData.timeline,
+          price: quoteData.total,
+          priceDiscount: Math.round(quoteData.total * 0.8),
+          monthly: quoteData.monthly,
+          breakdown: quoteData.breakdown,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+    } catch (e) {
+      console.error('[AgutiDesigns] Error enviando lead a n8n:', e);
+    }
+  };
+
   const handleLoadingDone = () => {
     const aiFeatures = formData.seoExtras.filter(s => s === 'chatbot-web');
     const extraFeatures = [
@@ -194,8 +225,10 @@ export default function CalculadoraLanding() {
       const diff = total - raw.total;
       breakdownFull.push({ label: `Estilo ${formData.designStyle}`, price: diff });
     }
-    setQuote({ ...raw, total, breakdown: breakdownFull });
+    const quoteData = { ...raw, total, breakdown: breakdownFull };
+    setQuote(quoteData);
     setIsLoading(false);
+    sendLeadToN8N(quoteData);
   };
 
   const reset = () => {
