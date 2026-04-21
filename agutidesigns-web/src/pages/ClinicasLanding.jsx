@@ -815,7 +815,7 @@ export default function ClinicasLanding() {
               <div className="cl-tp-header__divider" />
               <div className="cl-tp-header__brand">
                 <span className="cl-tp-header__powered">Opiniones verificadas en</span>
-                <TrustpilotLogo height={24} />
+                <TrustpilotLogo height={36} />
                 <span className="cl-tp-header__count">Basado en 47 opiniones</span>
               </div>
             </motion.div>
@@ -839,7 +839,7 @@ export default function ClinicasLanding() {
                       <div className="cl-tp-card__name">{r.name}</div>
                       <div className="cl-tp-card__role">{r.role}</div>
                     </div>
-                    <TrustpilotLogo height={16} />
+                    <TrustpilotLogo height={20} />
                   </div>
                 </motion.div>
               ))}
@@ -920,6 +920,24 @@ export default function ClinicasLanding() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── TRUSTPILOT FIXED WIDGET ── */}
+      <a
+        href="https://es.trustpilot.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="cl-tp-widget"
+        aria-label="Ver reseñas en Trustpilot"
+      >
+        <div className="cl-tp-widget__stars">
+          {[...Array(5)].map((_, i) => <TpStar key={i} size={14} />)}
+        </div>
+        <div className="cl-tp-widget__body">
+          <TrustpilotLogo height={18} />
+          <span className="cl-tp-widget__score">4.9 · <strong>Excelente</strong></span>
+        </div>
+        <div className="cl-tp-widget__count">47 opiniones verificadas</div>
+      </a>
 
       <Footer />
       <AIChatbot />
