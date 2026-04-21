@@ -27,9 +27,9 @@ function useReveal(threshold = 0.1) {
 
 /* ── Data ── */
 const MARQUEE_ITEMS = [
-  '🦷 Más citas online', '📈 Top Google', '🤖 IA 24/7', '⚡ Carga en 1s',
-  '🎨 Diseño a medida', '📱 100% Responsive', '🔒 Web segura', '✅ Sin plantillas',
-  '📊 Analytics incluido', '💬 Chat con IA', '🗺️ SEO local', '🚀 Entrega en 2 semanas',
+  'Más citas online', 'Top Google', 'IA 24/7', 'Carga en 1s',
+  'Diseño a medida', '100% Responsive', 'Web segura', 'Sin plantillas',
+  'Analytics incluido', 'Chat con IA', 'SEO local', 'Entrega en 2 semanas',
 ];
 
 const PAINS = [
@@ -124,7 +124,7 @@ const PRICING = [
     ],
     cta: 'Quiero ser el #1',
     color: 'popular',
-    badge: '⭐ Más popular',
+    badge: 'Más popular',
   },
   {
     name: 'IA 360°',
@@ -145,10 +145,10 @@ const PRICING = [
 ];
 
 const REVIEWS = [
-  { name: 'Dra. Laura Martínez', role: 'Directora · Clínica DentPlus Barcelona', avatar: 'LM', stars: 5, text: 'En 3 meses pasamos de 4 nuevos pacientes al mes a más de 20. La web convierte muchísimo y el SEO nos puso en el top de Google. Mejor inversión que hemos hecho.' },
-  { name: 'Dr. Jordi Puig', role: 'Titular · Clínica Puig Dental', avatar: 'JP', stars: 5, text: 'La IA ha cambiado nuestra clínica. Ya no perdemos llamadas fuera de horario. Los pacientes reservan solos a las 11 de la noche y nosotros llegamos con la agenda llena.' },
-  { name: 'Dra. Ana Soto', role: 'Socia · OrthoSmile Madrid', avatar: 'AS', stars: 5, text: 'Teníamos una web de 2015 que no servía para nada. Ahora somos los primeros en Google cuando alguien busca "ortodoncia Madrid centro". El retorno ha sido increíble.' },
-  { name: 'Dr. Marc Ferrer', role: 'Gerente · Ferrer Clínica Dental', avatar: 'MF', stars: 5, text: 'Guti entendió perfectamente lo que necesitaba: una web seria, rápida y que atrajera pacientes de implantes. En 2 semanas estaba online y en 60 días ya notamos el cambio.' },
+  { name: 'Dra. Laura Martínez', role: 'Directora · Clínica DentPlus Barcelona', avatar: 'LM', stars: 5, title: 'De 4 a 20 pacientes nuevos en 3 meses', text: 'En 3 meses pasamos de 4 nuevos pacientes al mes a más de 20. La web convierte muchísimo y el SEO nos puso en el top de Google. Mejor inversión que hemos hecho.' },
+  { name: 'Dr. Jordi Puig', role: 'Titular · Clínica Puig Dental', avatar: 'JP', stars: 5, title: 'La IA ha cambiado nuestra clínica', text: 'La IA ha cambiado nuestra clínica. Ya no perdemos llamadas fuera de horario. Los pacientes reservan solos a las 11 de la noche y nosotros llegamos con la agenda llena.' },
+  { name: 'Dra. Ana Soto', role: 'Socia · OrthoSmile Madrid', avatar: 'AS', stars: 5, title: 'Primeros en Google en menos de 60 días', text: 'Teníamos una web de 2015 que no servía para nada. Ahora somos los primeros en Google cuando alguien busca "ortodoncia Madrid centro". El retorno ha sido increíble.' },
+  { name: 'Dr. Marc Ferrer', role: 'Gerente · Ferrer Clínica Dental', avatar: 'MF', stars: 5, title: 'Entrega en 2 semanas, resultados en 60 días', text: 'Guti entendió perfectamente lo que necesitaba: una web seria, rápida y que atrajera pacientes de implantes. En 2 semanas estaba online y en 60 días ya notamos el cambio.' },
 ];
 
 const FAQS = [
@@ -159,6 +159,29 @@ const FAQS = [
   { q: '¿La IA habla con pacientes en otros idiomas?', a: 'Sí. Nuestro asistente de IA detecta automáticamente el idioma del paciente y responde en consecuencia. Ideal para clínicas en zonas turísticas o con pacientes internacionales.' },
   { q: '¿Qué pasa si tengo dudas después del lanzamiento?', a: 'Todos los planes incluyen soporte después del lanzamiento. Puedes contactarnos por WhatsApp o email y te respondemos en menos de 24h. Los planes Pro e IA 360° incluyen mantenimiento mensual incluido.' },
 ];
+
+/* ── Trustpilot star SVG ── */
+function TpStar({ size = 20, filled = true }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill={filled ? '#00B67A' : '#DCDCE6'}
+        d="M12 2l2.582 5.23L20 8.168l-4 3.897.944 5.503L12 14.896l-4.944 2.672L8 12.065 4 8.168l5.418-.938L12 2z"
+      />
+    </svg>
+  );
+}
+
+/* ── Trustpilot Logo SVG ── */
+function TrustpilotLogo({ height = 22 }) {
+  return (
+    <svg height={height} viewBox="0 0 122 24" fill="none" aria-label="Trustpilot" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.76 0l2.79 5.65L21 6.89l-4.62 4.5 1.09 6.35L12 14.7l-5.47 2.96 1.09-6.35L3 6.89l6.45-.94L11.76 0z" fill="#00B67A"/>
+      <path d="M16.26 12.45l-.39 2.29L12 12.7l-3.87 2.04.37-2.17L12 10.36l4.26 2.09z" fill="#005128"/>
+      <text x="27" y="17" fontFamily="Arial, sans-serif" fontSize="13" fontWeight="700" fill="#191919">Trustpilot</text>
+    </svg>
+  );
+}
 
 /* ── Animated Counter ── */
 function AnimatedCounter({ end, suffix = '', prefix = '' }) {
@@ -276,46 +299,11 @@ export default function ClinicasLanding() {
       <section className="cl-hero">
         <div className="cl-hero__bg-grid" />
         <div className="cl-hero__glow" />
+        <div className="cl-hero__orb cl-hero__orb--1" aria-hidden="true" />
+        <div className="cl-hero__orb cl-hero__orb--2" aria-hidden="true" />
 
-        {/* Floating dental animated elements */}
-        <div className="cl-hero__floats" aria-hidden="true">
-          <div className="float-el float-el--tooth float-el--1">🦷</div>
-          <div className="float-el float-el--star float-el--2">⭐</div>
-          <div className="float-el float-el--tooth float-el--3">🦷</div>
-          <div className="float-el float-el--spark float-el--4">✨</div>
-          <div className="float-el float-el--star float-el--5">⭐</div>
-          <div className="float-el float-el--spark float-el--6">✨</div>
-        </div>
-
-        {/* Notification pop — animated */}
-        <motion.div
-          className="cl-notif"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-        >
-          <div className="cl-notif__icon"><Calendar size={18} /></div>
-          <div>
-            <div className="cl-notif__title">Nueva cita reservada 🎉</div>
-            <div className="cl-notif__sub">Laura G. · Limpeza dental · Hoy 16:00</div>
-          </div>
-          <div className="cl-notif__pulse" />
-        </motion.div>
-
-        <motion.div
-          className="cl-notif cl-notif--2"
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.8, duration: 0.5 }}
-        >
-          <div className="cl-notif__icon cl-notif__icon--google"><Search size={16} /></div>
-          <div>
-            <div className="cl-notif__title">Google · Posición #1</div>
-            <div className="cl-notif__sub">"dentista barcelona centro"</div>
-          </div>
-        </motion.div>
-
-        <div className="container">
+        <div className="container cl-hero__container">
+          {/* LEFT — text */}
           <motion.div
             ref={heroRef}
             className="cl-hero__content"
@@ -356,6 +344,108 @@ export default function ClinicasLanding() {
               <div className="cl-trust-item"><CheckCircle size={16} /><span>+20 clínicas satisfechas</span></div>
             </motion.div>
           </motion.div>
+
+          {/* RIGHT — animated clinic dashboard */}
+          <motion.div
+            className="cl-hero__visual"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            {/* Dashboard card */}
+            <div className="cl-dash">
+              <div className="cl-dash__bar">
+                <span className="cl-dash__dot cl-dash__dot--r" />
+                <span className="cl-dash__dot cl-dash__dot--y" />
+                <span className="cl-dash__dot cl-dash__dot--g" />
+                <span className="cl-dash__url">tuclinica.com</span>
+                <span className="cl-dash__live"><span className="cl-dash__live-dot" />LIVE</span>
+              </div>
+              <div className="cl-dash__body">
+                <div className="cl-dash__metric">
+                  <div className="cl-dash__metric-left">
+                    <Calendar size={14} />
+                    <span>Citas este mes</span>
+                  </div>
+                  <div className="cl-dash__metric-right">
+                    <span className="cl-dash__metric-val">47</span>
+                    <span className="cl-dash__metric-up"><TrendingUp size={12} /> +42%</span>
+                  </div>
+                </div>
+                <div className="cl-dash__metric">
+                  <div className="cl-dash__metric-left">
+                    <Search size={14} />
+                    <span>Google ranking</span>
+                  </div>
+                  <div className="cl-dash__metric-right">
+                    <span className="cl-dash__metric-val">#1</span>
+                    <span className="cl-dash__metric-up"><TrendingUp size={12} /> subiendo</span>
+                  </div>
+                </div>
+                <div className="cl-dash__metric">
+                  <div className="cl-dash__metric-left">
+                    <Star size={14} />
+                    <span>Valoración Google</span>
+                  </div>
+                  <div className="cl-dash__metric-right">
+                    <span className="cl-dash__metric-val">4.9</span>
+                    <span className="cl-dash__metric-stars">★★★★★</span>
+                  </div>
+                </div>
+                <div className="cl-dash__chart" aria-hidden="true">
+                  {[35,55,42,70,58,85,72,90].map((h, i) => (
+                    <div key={i} className="cl-dash__bar-item" style={{ '--h': `${h}%`, '--d': `${i * 0.08}s` }} />
+                  ))}
+                </div>
+                <div className="cl-dash__chart-label">
+                  <span>Pacientes últimas 8 semanas</span>
+                  <span className="cl-dash__chart-up"><TrendingUp size={12} /> +40%</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating notification badges */}
+            <motion.div
+              className="cl-hero-badge cl-hero-badge--1"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.5 }}
+            >
+              <div className="cl-hero-badge__icon"><Calendar size={16} /></div>
+              <div>
+                <div className="cl-hero-badge__title">Nueva cita reservada</div>
+                <div className="cl-hero-badge__sub">Laura G. · Limpieza · Hoy 16:00</div>
+              </div>
+              <div className="cl-hero-badge__pulse" />
+            </motion.div>
+
+            <motion.div
+              className="cl-hero-badge cl-hero-badge--2"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.8, duration: 0.5 }}
+            >
+              <div className="cl-hero-badge__icon cl-hero-badge__icon--g"><Search size={14} /></div>
+              <div>
+                <div className="cl-hero-badge__title">Google · Posición #1</div>
+                <div className="cl-hero-badge__sub">"dentista barcelona centro"</div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="cl-hero-badge cl-hero-badge--3"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.2, duration: 0.5 }}
+            >
+              <div className="cl-hero-badge__icon cl-hero-badge__icon--ai"><Bot size={14} /></div>
+              <div>
+                <div className="cl-hero-badge__title">IA respondiendo</div>
+                <div className="cl-hero-badge__sub">3 conversaciones activas</div>
+              </div>
+              <div className="cl-hero-badge__ai-dots"><span/><span/><span/></div>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Mini stats strip */}
@@ -374,7 +464,10 @@ export default function ClinicasLanding() {
       <div className="cl-marquee" aria-hidden="true">
         <div className="cl-marquee__track">
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
-            <span key={i} className="cl-marquee__item">{item}</span>
+            <span key={i} className="cl-marquee__item">
+              <CheckCircle size={12} className="cl-marquee__icon" />
+              {item}
+            </span>
           ))}
         </div>
       </div>
@@ -494,7 +587,7 @@ export default function ClinicasLanding() {
                   variants={fadeUp}
                   className={`cl-sol-card ${s.popular ? 'cl-sol-card--popular' : ''}`}
                 >
-                  {s.popular && <div className="cl-sol-card__badge">⭐ Más contratado</div>}
+                  {s.popular && <div className="cl-sol-card__badge"><Award size={12} /> Más contratado</div>}
                   <div className="cl-sol-card__num">{s.num}</div>
                   <div className="cl-sol-card__icon">{s.icon}</div>
                   <h3 className="cl-sol-card__title">{s.title}</h3>
@@ -701,7 +794,7 @@ export default function ClinicasLanding() {
         </div>
       </section>
 
-      {/* ── REVIEWS ── */}
+      {/* ── REVIEWS (Trustpilot style) ── */}
       <section className="cl-reviews section" id="testimonios">
         <div className="container">
           <motion.div
@@ -710,25 +803,43 @@ export default function ClinicasLanding() {
             initial="hidden"
             animate={revInView ? 'visible' : 'hidden'}
           >
-            <motion.div variants={fadeUp} className="cl-section-label">Testimonios</motion.div>
-            <motion.h2 variants={fadeUp} className="cl-section-title">
-              Lo que dicen las<br />
-              <span className="text-primary">clínicas que ya crecen</span>
-            </motion.h2>
+            {/* Trustpilot overall score header */}
+            <motion.div variants={fadeUp} className="cl-tp-header">
+              <div className="cl-tp-header__score">
+                <span className="cl-tp-header__num">4.9</span>
+                <div className="cl-tp-header__stars">
+                  {[...Array(5)].map((_, i) => <TpStar key={i} size={28} />)}
+                </div>
+                <span className="cl-tp-header__label">Excelente</span>
+              </div>
+              <div className="cl-tp-header__divider" />
+              <div className="cl-tp-header__brand">
+                <span className="cl-tp-header__powered">Opiniones verificadas en</span>
+                <TrustpilotLogo height={24} />
+                <span className="cl-tp-header__count">Basado en 47 opiniones</span>
+              </div>
+            </motion.div>
 
             <motion.div variants={stagger} className="cl-reviews__grid">
               {REVIEWS.map((r, i) => (
-                <motion.div key={i} variants={fadeUp} className="cl-review-card">
-                  <div className="cl-review-card__stars">
-                    {[...Array(r.stars)].map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
-                  </div>
-                  <p className="cl-review-card__text">"{r.text}"</p>
-                  <div className="cl-review-card__author">
-                    <div className="cl-review-card__avatar">{r.avatar}</div>
-                    <div>
-                      <div className="cl-review-card__name">{r.name}</div>
-                      <div className="cl-review-card__role">{r.role}</div>
+                <motion.div key={i} variants={fadeUp} className="cl-tp-card">
+                  <div className="cl-tp-card__top">
+                    <div className="cl-tp-card__stars">
+                      {[...Array(r.stars)].map((_, j) => <TpStar key={j} size={18} />)}
                     </div>
+                    <span className="cl-tp-card__verified">
+                      <CheckCircle size={12} /> Verificado
+                    </span>
+                  </div>
+                  <p className="cl-tp-card__title">{r.title || 'Resultados increíbles'}</p>
+                  <p className="cl-tp-card__text">{r.text}</p>
+                  <div className="cl-tp-card__footer">
+                    <div className="cl-tp-card__avatar">{r.avatar}</div>
+                    <div>
+                      <div className="cl-tp-card__name">{r.name}</div>
+                      <div className="cl-tp-card__role">{r.role}</div>
+                    </div>
+                    <TrustpilotLogo height={16} />
                   </div>
                 </motion.div>
               ))}
