@@ -94,50 +94,67 @@ const PROCESS = [
 
 const PRICING = [
   {
-    name: 'Esencial',
-    price: '1.200',
-    period: 'pago único',
-    desc: 'Para clínicas que necesitan una web profesional y empezar a captar pacientes.',
-    features: [
-      'Web a medida (hasta 6 páginas)',
-      'Diseño responsive mobile-first',
-      'Formulario de cita online',
+    name: 'Web + Mantenimiento',
+    monthly: '149',
+    setup: '990',
+    desc: 'Tu web profesional activa y mantenida mes a mes. Sin preocupaciones técnicas.',
+    monthlyIncludes: [
+      'Hosting y dominio incluido',
+      'Actualizaciones y seguridad',
+      'Copias de seguridad diarias',
+      'Soporte técnico prioritario',
+      'Cambios de contenido incluidos',
+    ],
+    setupIncludes: [
+      'Diseño web a medida',
       'SEO básico on-page',
-      'Google Analytics',
-      '1 mes de soporte',
+      'Formulario de cita online',
+      'Google Analytics configurado',
     ],
     cta: 'Empezar proyecto',
     color: '',
   },
   {
-    name: 'Clínica Pro',
-    price: '2.400',
-    period: 'pago único',
-    desc: 'La solución completa: web + SEO local para dominar Google en tu ciudad.',
-    features: [
-      'Todo lo de Esencial',
-      'SEO local avanzado',
+    name: 'Web + SEO + SEM',
+    monthly: '349',
+    setup: '1.490',
+    desc: 'Domina Google con SEO local continuo y campañas de publicidad gestionadas.',
+    monthlyIncludes: [
+      'Todo lo de Mantenimiento',
+      'SEO local mensual activo',
       'Google My Business optimizado',
-      'Blog SEO para captar pacientes',
+      'Gestión Google Ads (SEM)',
+      'Informe mensual de resultados',
+      'Estrategia de palabras clave',
+    ],
+    setupIncludes: [
+      'Web a medida completa',
+      'Auditoría SEO inicial',
+      'Configuración Google Ads',
       'Integración Google Reviews',
-      '3 meses de soporte + mantenimiento',
     ],
     cta: 'Quiero ser el #1',
     color: 'popular',
-    badge: 'Más popular',
+    badge: 'Más contratado',
   },
   {
-    name: 'IA 360°',
-    price: '3.900',
-    period: 'primer año',
-    desc: 'La clínica del futuro: web + SEO + IA que agenda citas mientras duermes.',
-    features: [
-      'Todo lo de Clínica Pro',
-      'Asistente IA personalizado',
-      'Citas automáticas 24/7',
+    name: 'IA 360° Total',
+    monthly: '599',
+    setup: '1.990',
+    desc: 'La clínica más avanzada de tu zona: web, SEO, SEM e IA que trabaja sola.',
+    monthlyIncludes: [
+      'Todo lo de SEO + SEM',
+      'IA activa 24/7 en tu web',
+      'Citas automáticas sin intervención',
+      'IA multiidioma personalizada',
+      'Reportes IA + pacientes nuevos',
+      'Optimización continua de IA',
+    ],
+    setupIncludes: [
+      'Web premium a medida',
+      'Configuración completa IA',
       'Integración con tu agenda',
-      'Reportes mensuales',
-      '12 meses soporte premium',
+      'Formación del equipo incluida',
     ],
     cta: 'Activar mi IA',
     color: '',
@@ -748,12 +765,27 @@ export default function ClinicasLanding() {
           >
             <motion.div variants={fadeUp} className="cl-section-label">Planes y precios</motion.div>
             <motion.h2 variants={fadeUp} className="cl-section-title">
-              Inversión clara,<br />
-              <span className="text-primary">retorno medible</span>
+              Inversión mensual,<br />
+              <span className="text-primary">resultados continuos</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="cl-pricing__sub">
-              Sin sorpresas. Sin comisiones ocultas. Pagas una vez y la web es tuya para siempre.
+              Setup único para lanzar tu proyecto + mensualidad que mantiene tu clínica creciendo cada mes.
             </motion.p>
+
+            {/* Why monthly banner */}
+            <motion.div variants={fadeUp} className="cl-pricing__why">
+              {[
+                { icon: <TrendingUp size={18} />, text: 'SEO y SEM optimizados cada mes' },
+                { icon: <Shield size={18} />, text: 'Web siempre segura y actualizada' },
+                { icon: <Bot size={18} />, text: 'IA mejorando continuamente' },
+                { icon: <HeartHandshake size={18} />, text: 'Acompañamiento mes a mes' },
+              ].map((w, i) => (
+                <div key={i} className="cl-pricing__why-item">
+                  <div className="cl-pricing__why-icon">{w.icon}</div>
+                  <span>{w.text}</span>
+                </div>
+              ))}
+            </motion.div>
 
             <motion.div variants={stagger} className="cl-price__grid">
               {PRICING.map((plan, i) => (
@@ -764,17 +796,42 @@ export default function ClinicasLanding() {
                 >
                   {plan.badge && <div className="cl-price-card__badge">{plan.badge}</div>}
                   <div className="cl-price-card__name">{plan.name}</div>
-                  <div className="cl-price-card__price">
+
+                  {/* Monthly — big number */}
+                  <div className="cl-price-card__monthly">
                     <span className="cl-price-card__euro">€</span>
-                    <span className="cl-price-card__num">{plan.price}</span>
+                    <span className="cl-price-card__num">{plan.monthly}</span>
+                    <span className="cl-price-card__per">/mes</span>
                   </div>
-                  <div className="cl-price-card__period">{plan.period}</div>
+
+                  {/* Setup — smaller */}
+                  <div className="cl-price-card__setup">
+                    <span>+ Setup único</span>
+                    <strong>€{plan.setup}</strong>
+                  </div>
+
                   <p className="cl-price-card__desc">{plan.desc}</p>
+
+                  {/* Monthly includes */}
+                  <div className="cl-price-card__section-label">
+                    <span className="cl-price-tag cl-price-tag--monthly">Mensualidad incluye</span>
+                  </div>
                   <ul className="cl-price-card__features">
-                    {plan.features.map((f, j) => (
-                      <li key={j}><Check size={14} />{f}</li>
+                    {plan.monthlyIncludes.map((f, j) => (
+                      <li key={j}><Check size={13} />{f}</li>
                     ))}
                   </ul>
+
+                  {/* Setup includes */}
+                  <div className="cl-price-card__section-label">
+                    <span className="cl-price-tag cl-price-tag--setup">Setup incluye</span>
+                  </div>
+                  <ul className="cl-price-card__features cl-price-card__features--setup">
+                    {plan.setupIncludes.map((f, j) => (
+                      <li key={j}><Check size={13} />{f}</li>
+                    ))}
+                  </ul>
+
                   <a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer" className="cl-price-card__cta-wrap">
                     <button className={`cl-price-card__cta ${plan.color === 'popular' ? 'cl-price-card__cta--popular' : ''}`}>
                       {plan.cta} <ArrowRight size={15} />
@@ -785,7 +842,7 @@ export default function ClinicasLanding() {
             </motion.div>
 
             <motion.p variants={fadeUp} className="cl-pricing__note">
-              ¿Tienes dudas sobre qué plan necesitas?{' '}
+              ¿Quieres un presupuesto personalizado?{' '}
               <a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">
                 Hablamos gratis por WhatsApp →
               </a>
@@ -920,21 +977,6 @@ export default function ClinicasLanding() {
           </motion.div>
         </div>
       </section>
-
-      {/* ── TRUSTPILOT FIXED WIDGET ── */}
-      <a
-        href="https://es.trustpilot.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="cl-tp-widget"
-        aria-label="Ver reseñas en Trustpilot"
-      >
-        <TrustpilotLogo height={16} />
-        <span className="cl-tp-widget__score">
-          {[...Array(5)].map((_, i) => <TpStar key={i} size={11} />)}
-          <span>4.9</span>
-        </span>
-      </a>
 
       <Footer />
       <AIChatbot />
